@@ -1,0 +1,1229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Luck Xing — A Personal Publication</title>
+<meta name="description" content="Luck Xing — Stern BTE, freelance consultant, occasional builder of small things. A personal publication, Vol. 01." />
+
+<!-- Favicon: a serif L -->
+<link rel="icon" href='data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23f1ece1"/><text x="50" y="78" font-family="Georgia,serif" font-style="italic" font-size="92" font-weight="400" text-anchor="middle" fill="%238a2814">L</text></svg>' />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<!-- Fraunces (variable, italic + opsz + soft + wght axes) + JetBrains Mono -->
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..900,0..100;1,9..144,300..900,0..100&family=JetBrains+Mono:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
+
+<style>
+/* ================================================================
+   LUCK XING — A PERSONAL PUBLICATION
+   Editorial / magazine-meets-personal-site.
+   Restraint with a voice. Asymmetric. Footnoted. Opinionated.
+   ================================================================ */
+
+:root {
+  --bg:        #f1ece1;   /* warm paper */
+  --bg-2:      #ebe5d4;   /* slightly darker, for panels */
+  --ink:       #1a1714;   /* near-black, warm */
+  --ink-2:     #5a5246;   /* mid warm gray */
+  --ink-3:     #968d7c;   /* faint */
+  --accent:    #8a2814;   /* deep oxblood / burnt sienna */
+  --accent-2:  #b54a2c;   /* lifted accent (hovers) */
+  --rule:      rgba(26, 23, 20, 0.18);
+  --rule-soft: rgba(26, 23, 20, 0.08);
+  --hl:        #e8d9b5;
+  --serif:     'Fraunces', 'Times New Roman', Georgia, serif;
+  --mono:      'JetBrains Mono', ui-monospace, 'SF Mono', Consolas, monospace;
+  --max:       1180px;
+  --gap:       clamp(20px, 4vw, 56px);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--serif);
+  font-variation-settings: "opsz" 14, "SOFT" 30, "wght" 400;
+  font-size: 17px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  /* Subtle paper grain via SVG noise */
+  background-image:
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.08 0 0 0 0 0.06 0 0 0 0 0.04 0 0 0 0.045 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  overflow-x: hidden;
+}
+
+::selection { background: var(--accent); color: var(--bg); }
+
+/* ---------- LAYOUT PRIMITIVES ---------- */
+.wrap {
+  width: 100%;
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 clamp(20px, 5vw, 56px);
+}
+
+.rule {
+  height: 1px;
+  background: var(--rule);
+  width: 100%;
+}
+.rule.soft { background: var(--rule-soft); }
+
+/* ---------- MASTHEAD (top strip) ---------- */
+.masthead {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  border-bottom: 1px solid var(--rule);
+  padding: 14px 0;
+}
+.masthead .wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.masthead .vol { color: var(--accent); font-weight: 500; }
+.masthead .right { color: var(--ink-3); }
+.masthead .right span { margin-left: 14px; }
+.masthead .right span:first-child { margin-left: 0; }
+
+/* ---------- HERO ---------- */
+.hero {
+  padding: clamp(60px, 10vw, 130px) 0 clamp(48px, 8vw, 96px);
+  position: relative;
+}
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(32px, 5vw, 56px);
+  align-items: end;
+}
+@media (min-width: 880px) {
+  .hero-grid { grid-template-columns: 1.5fr 1fr; }
+}
+
+.eyebrow {
+  font-family: var(--mono);
+  font-size: 11.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 22px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.eyebrow::before {
+  content: '';
+  width: 24px;
+  height: 1px;
+  background: var(--accent);
+}
+
+h1.name {
+  font-family: var(--serif);
+  font-style: italic;
+  font-variation-settings: "opsz" 144, "SOFT" 50, "wght" 380;
+  font-size: clamp(64px, 14vw, 188px);
+  line-height: 0.92;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+  margin-bottom: 28px;
+}
+h1.name .amp {
+  font-style: italic;
+  font-variation-settings: "opsz" 144, "SOFT" 100, "wght" 300;
+  color: var(--accent);
+}
+
+.tagline {
+  font-family: var(--serif);
+  font-style: italic;
+  font-variation-settings: "opsz" 36, "SOFT" 50, "wght" 360;
+  font-size: clamp(20px, 2.4vw, 26px);
+  line-height: 1.35;
+  color: var(--ink-2);
+  max-width: 560px;
+  margin-bottom: 36px;
+}
+.tagline .em { color: var(--ink); font-style: italic; }
+
+.dateline {
+  font-family: var(--mono);
+  font-size: 11.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.dateline strong { color: var(--ink-2); font-weight: 500; }
+
+/* Portrait */
+.portrait {
+  position: relative;
+  align-self: end;
+}
+.portrait img {
+  width: 100%;
+  display: block;
+  filter: contrast(0.96);
+  /* subtle deckle edge using box-shadow */
+  box-shadow:
+    0 1px 0 rgba(0,0,0,0.08),
+    0 22px 50px -22px rgba(40, 30, 20, 0.4);
+}
+.portrait::after {
+  content: 'L. XING — APRIL ’26';
+  position: absolute;
+  bottom: -32px; right: 0;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.18em;
+  color: var(--ink-3);
+  text-transform: uppercase;
+}
+
+/* ---------- SECTION FRAMING ---------- */
+.section {
+  padding: clamp(72px, 11vw, 140px) 0;
+  position: relative;
+}
+
+.section-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-top: 1px solid var(--ink);
+  padding-top: 14px;
+  margin-bottom: clamp(40px, 6vw, 72px);
+}
+.section-label .num {
+  color: var(--accent);
+  font-weight: 500;
+}
+
+/* ---------- ABOUT / LEDE ---------- */
+.lede {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(20px, 4vw, 64px);
+}
+@media (min-width: 820px) {
+  .lede { grid-template-columns: 1fr 2fr; }
+}
+
+.lede h2 {
+  font-family: var(--serif);
+  font-style: italic;
+  font-variation-settings: "opsz" 60, "SOFT" 80, "wght" 420;
+  font-size: clamp(32px, 4.6vw, 52px);
+  line-height: 1;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  position: sticky;
+  top: 30px;
+  align-self: start;
+}
+
+.prose {
+  font-family: var(--serif);
+  font-variation-settings: "opsz" 14, "SOFT" 50, "wght" 380;
+  font-size: 18.5px;
+  line-height: 1.6;
+  color: var(--ink);
+  max-width: 60ch;
+}
+.prose p + p { margin-top: 1.1em; text-indent: 1.6em; }
+.prose p:first-child { text-indent: 0; }
+
+/* Drop cap on the first paragraph */
+.prose p.drop::first-letter {
+  font-family: var(--serif);
+  font-style: italic;
+  font-variation-settings: "opsz" 144, "SOFT" 100, "wght" 360;
+  font-size: 5.4em;
+  line-height: 0.78;
+  float: left;
+  margin: 0.05em 0.08em -0.05em -0.03em;
+  color: var(--accent);
+}
+
+.prose em {
+  font-style: italic;
+  font-variation-settings: "opsz" 14, "SOFT" 50, "wght" 380;
+}
+
+.prose .han {
+  font-style: normal;
+  letter-spacing: 0.03em;
+  color: var(--accent);
+  font-weight: 500;
+}
+
+/* Footnote refs */
+.fnref {
+  font-family: var(--mono);
+  font-size: 0.62em;
+  vertical-align: super;
+  color: var(--accent);
+  cursor: pointer;
+  margin-left: 1px;
+  font-weight: 500;
+  border: 0;
+  background: none;
+  padding: 0 2px;
+  text-decoration: none;
+  transition: color 0.15s;
+}
+.fnref:hover { color: var(--accent-2); }
+.fnref.active { color: var(--accent-2); text-decoration: underline; }
+
+.footnotes {
+  margin-top: 40px;
+  padding-top: 22px;
+  border-top: 1px dashed var(--rule);
+  font-family: var(--mono);
+  font-size: 12.5px;
+  line-height: 1.65;
+  color: var(--ink-2);
+  max-width: 60ch;
+}
+.footnote {
+  display: grid;
+  grid-template-columns: 28px 1fr;
+  gap: 6px;
+  padding: 6px 0;
+  opacity: 0.55;
+  transition: opacity 0.2s;
+}
+.footnote.lit { opacity: 1; color: var(--ink); }
+.footnote .n { color: var(--accent); font-weight: 500; }
+
+/* ---------- WORK ---------- */
+.works {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(72px, 10vw, 140px);
+}
+
+.work {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(24px, 4vw, 48px);
+  align-items: start;
+}
+@media (min-width: 880px) {
+  .work { grid-template-columns: 1fr 1fr; }
+  .work.flip .work-image { order: -1; }
+  .work.flip .work-meta { padding-left: clamp(12px, 3vw, 40px); }
+}
+
+.work-meta { position: relative; }
+
+.work-num {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 18px;
+}
+.work-num .index {
+  font-size: 14px;
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.work-title {
+  font-family: var(--serif);
+  font-style: italic;
+  font-variation-settings: "opsz" 80, "SOFT" 60, "wght" 380;
+  font-size: clamp(34px, 5vw, 56px);
+  line-height: 1;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+  margin-bottom: 22px;
+}
+
+.work-desc {
+  font-family: var(--serif);
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--ink);
+  max-width: 48ch;
+  margin-bottom: 28px;
+}
+
+.work-tags {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-bottom: 28px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+}
+.work-tags span::before { content: '·  '; color: var(--ink-3); }
+.work-tags span:first-child::before { content: ''; }
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  text-decoration: none;
+  padding-bottom: 6px;
+  border-bottom: 1.5px solid var(--accent);
+  transition: gap 0.25s, color 0.2s;
+  font-weight: 500;
+}
+.cta::after {
+  content: '→';
+  font-family: var(--serif);
+  font-size: 14px;
+  letter-spacing: 0;
+  transition: transform 0.25s;
+}
+.cta:hover { gap: 16px; color: var(--accent-2); }
+.cta:hover::after { transform: translateX(2px); }
+
+/* Work image / preview frames */
+.work-image {
+  width: 100%;
+  position: relative;
+}
+.work-image img {
+  width: 100%;
+  display: block;
+  box-shadow: 0 18px 38px -22px rgba(40,30,20,0.32);
+}
+.work-image .caption {
+  position: absolute;
+  bottom: -28px;
+  left: 0;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.16em;
+  color: var(--ink-3);
+  text-transform: uppercase;
+}
+
+/* CYBERRANGE-specific preview block (no real screenshot, styled instead) */
+.preview-cyber {
+  background: #0b1530;
+  color: #cfe0f5;
+  font-family: var(--mono);
+  padding: clamp(20px, 3vw, 32px);
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid rgba(255,255,255,0.06);
+  box-shadow: 0 18px 38px -22px rgba(11, 21, 48, 0.55);
+}
+.preview-cyber::before {
+  content: ''; position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 60% 80% at 30% 20%, rgba(80, 164, 240, 0.32), transparent 60%),
+    radial-gradient(ellipse 70% 60% at 80% 80%, rgba(43, 136, 216, 0.36), transparent 65%);
+  pointer-events: none;
+}
+.preview-cyber > * { position: relative; }
+.preview-cyber .winbar {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+.preview-cyber .winbar i {
+  width: 9px; height: 9px; border-radius: 50%;
+  background: rgba(255,255,255,0.22);
+  display: block;
+}
+.preview-cyber .winbar i.r { background: #d83b01; }
+.preview-cyber .alert {
+  border: 1px solid rgba(216, 59, 1, 0.55);
+  background: rgba(216, 59, 1, 0.10);
+  padding: 10px 12px;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: #ffb89a;
+  margin-bottom: 14px;
+}
+.preview-cyber .alert::before {
+  content: '⚠  ';
+  color: #ff7a3a;
+}
+.preview-cyber .lines {
+  font-size: 11.5px;
+  line-height: 1.7;
+  color: rgba(207, 224, 245, 0.78);
+}
+.preview-cyber .lines .dim { color: rgba(207, 224, 245, 0.45); }
+.preview-cyber .lines .red { color: #ff7a3a; }
+.preview-cyber .blink {
+  display: inline-block;
+  width: 7px; height: 13px;
+  background: #cfe0f5;
+  vertical-align: -2px;
+  margin-left: 2px;
+  animation: blink 1s steps(2) infinite;
+}
+@keyframes blink { to { opacity: 0; } }
+.preview-cyber .stamp {
+  align-self: flex-start;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  color: rgba(255, 170, 68, 0.85);
+  border: 1px solid rgba(255, 170, 68, 0.4);
+  padding: 4px 10px;
+  border-radius: 14px;
+  text-transform: uppercase;
+  margin-top: 18px;
+}
+
+/* ChatPals — styled card with Chinese characters as a visual */
+.preview-chat {
+  background: var(--bg-2);
+  padding: clamp(28px, 4vw, 48px);
+  aspect-ratio: 4 / 3;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid var(--rule);
+  position: relative;
+  overflow: hidden;
+}
+.preview-chat::before {
+  content: '志';
+  position: absolute;
+  bottom: -38px; right: -22px;
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 360px;
+  line-height: 1;
+  color: var(--accent);
+  opacity: 0.08;
+  pointer-events: none;
+}
+.preview-chat .stat {
+  font-family: var(--serif);
+  font-style: italic;
+  font-variation-settings: "opsz" 144, "SOFT" 80, "wght" 320;
+  font-size: clamp(56px, 8vw, 96px);
+  line-height: 0.9;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+  position: relative;
+}
+.preview-chat .stat sub {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  color: var(--ink-3);
+  text-transform: uppercase;
+  display: block;
+  margin-top: 8px;
+  font-style: normal;
+}
+.preview-chat .row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 24px;
+  position: relative;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  color: var(--ink-2);
+  text-transform: uppercase;
+}
+
+/* ---------- OFF DUTY ---------- */
+.offduty {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(28px, 5vw, 56px);
+  align-items: center;
+}
+@media (min-width: 820px) {
+  .offduty { grid-template-columns: 1fr 1fr; }
+}
+.offduty img {
+  width: 100%;
+  display: block;
+  box-shadow: 0 18px 38px -22px rgba(40,30,20,0.32);
+}
+.offduty .text h3 {
+  font-family: var(--serif);
+  font-style: italic;
+  font-variation-settings: "opsz" 60, "SOFT" 80, "wght" 400;
+  font-size: clamp(28px, 3.6vw, 40px);
+  line-height: 1.05;
+  margin-bottom: 16px;
+  color: var(--ink);
+}
+.offduty .text p {
+  font-family: var(--serif);
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--ink);
+  max-width: 44ch;
+}
+.offduty .text p + p { margin-top: 1em; }
+
+/* ---------- CURRENTLY / TOOLS ---------- */
+.now-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(40px, 6vw, 80px);
+}
+@media (min-width: 760px) {
+  .now-grid { grid-template-columns: 1fr 1fr; }
+}
+
+.now-list {
+  list-style: none;
+  border-top: 1px solid var(--rule);
+}
+.now-list li {
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  gap: 18px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--rule);
+  font-family: var(--serif);
+  font-size: 16px;
+  line-height: 1.45;
+}
+.now-list li time {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: var(--ink-3);
+  text-transform: uppercase;
+  padding-top: 3px;
+}
+.now-list li em {
+  font-style: italic;
+  color: var(--ink-2);
+}
+
+.tools-list {
+  list-style: none;
+  font-family: var(--mono);
+  font-size: 12.5px;
+  letter-spacing: 0.06em;
+  line-height: 2.1;
+  color: var(--ink-2);
+  columns: 2;
+  column-gap: 28px;
+}
+.tools-list li::before {
+  content: '— ';
+  color: var(--accent);
+}
+
+.now-h {
+  font-family: var(--serif);
+  font-style: italic;
+  font-variation-settings: "opsz" 60, "SOFT" 80, "wght" 420;
+  font-size: clamp(28px, 3.6vw, 40px);
+  line-height: 1;
+  margin-bottom: 24px;
+  color: var(--ink);
+}
+
+/* ---------- CONTACT ---------- */
+.contact {
+  text-align: center;
+  padding: clamp(80px, 13vw, 160px) 0 clamp(56px, 8vw, 96px);
+  border-top: 1px solid var(--rule);
+}
+.contact .lead {
+  font-family: var(--serif);
+  font-style: italic;
+  font-variation-settings: "opsz" 100, "SOFT" 80, "wght" 380;
+  font-size: clamp(36px, 6vw, 76px);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  max-width: 18ch;
+  margin: 0 auto 40px;
+}
+.contact .lead a {
+  color: var(--accent);
+  text-decoration: none;
+  background-image: linear-gradient(var(--accent), var(--accent));
+  background-repeat: no-repeat;
+  background-position: 0 95%;
+  background-size: 100% 1.5px;
+  transition: background-size 0.3s, color 0.2s;
+}
+.contact .lead a:hover {
+  color: var(--accent-2);
+  background-image: linear-gradient(var(--accent-2), var(--accent-2));
+  background-size: 100% 4px;
+}
+.contact .links {
+  font-family: var(--mono);
+  font-size: 11.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px 28px;
+}
+.contact .links a {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 4px;
+  transition: color 0.2s, border-color 0.2s;
+}
+.contact .links a:hover { color: var(--accent); border-color: var(--accent); }
+
+/* ---------- COLOPHON FOOTER ---------- */
+.colophon {
+  border-top: 1px solid var(--ink);
+  padding: 22px 0 80px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.colophon .wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.colophon .set { color: var(--ink-2); }
+.colophon em {
+  font-style: italic;
+  text-transform: none;
+  letter-spacing: 0.02em;
+  color: var(--accent);
+}
+
+/* ---------- MARQUEE ---------- */
+.marquee {
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  padding: 18px 0;
+  overflow: hidden;
+  white-space: nowrap;
+  font-family: var(--mono);
+  font-size: 11.5px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+}
+.marquee-track {
+  display: inline-block;
+  animation: scroll 60s linear infinite;
+}
+.marquee-track span {
+  margin-right: 56px;
+}
+.marquee-track .dot {
+  color: var(--accent);
+  margin: 0 36px 0 -28px;
+}
+@keyframes scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ---------- ENTRANCE ANIM ---------- */
+.reveal { opacity: 0; transform: translateY(14px); transition: opacity 0.9s ease, transform 0.9s ease; }
+.reveal.in { opacity: 1; transform: translateY(0); }
+
+/* ---------- MOBILE TUNING ---------- */
+@media (max-width: 720px) {
+  .masthead .right span:nth-child(2) { display: none; }
+  h1.name { font-size: 19vw; }
+  .portrait::after { right: auto; left: 0; }
+  .now-list li { grid-template-columns: 80px 1fr; gap: 12px; }
+  .tools-list { columns: 1; }
+}
+
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     MASTHEAD
+============================================================ -->
+<header class="masthead">
+  <div class="wrap">
+    <div class="left">
+      <span class="vol">Vol. 01 / No. 01</span>
+      &nbsp;·&nbsp; A Personal Publication
+    </div>
+    <div class="right">
+      <span>New York City</span>
+      <span>Spring 2026</span>
+      <span id="dateNow">—</span>
+    </div>
+  </div>
+</header>
+
+<!-- ============================================================
+     HERO
+============================================================ -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-left">
+      <div class="eyebrow reveal">Notes from a freshman, mostly</div>
+      <h1 class="name reveal">Luck<br/><span class="amp">Xing</span></h1>
+      <p class="tagline reveal">
+        Jack of all trades, master of none —
+        <em class="em">but oftentimes better than a master of one.</em>
+      </p>
+      <div class="dateline reveal">
+        <strong>NYU Stern</strong> · B.S. Business, Technology &amp; Entrepreneurship · ’29
+      </div>
+    </div>
+
+    <div class="portrait reveal">
+      <img src="images/headshot.jpg" alt="Black-and-white portrait of Luck Xing" />
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     MARQUEE
+============================================================ -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>Beijing → Toronto → New York</span>
+    <span class="dot">✦</span>
+    <span>Strategy &amp; Story</span>
+    <span class="dot">✦</span>
+    <span>Built ChatPals at 17</span>
+    <span class="dot">✦</span>
+    <span>酸甜苦辣 — that’s the whole point</span>
+    <span class="dot">✦</span>
+    <span>Currently figuring it out</span>
+    <span class="dot">✦</span>
+    <span>Beijing → Toronto → New York</span>
+    <span class="dot">✦</span>
+    <span>Strategy &amp; Story</span>
+    <span class="dot">✦</span>
+    <span>Built ChatPals at 17</span>
+    <span class="dot">✦</span>
+    <span>酸甜苦辣 — that’s the whole point</span>
+    <span class="dot">✦</span>
+    <span>Currently figuring it out</span>
+    <span class="dot">✦</span>
+  </div>
+</div>
+
+<!-- ============================================================
+     ABOUT
+============================================================ -->
+<section class="section" id="about">
+  <div class="wrap">
+    <div class="section-label">
+      <span><span class="num">§ 01</span> &nbsp;&nbsp; Lede</span>
+      <span>About</span>
+    </div>
+
+    <div class="lede">
+      <h2>The short<br/>version.</h2>
+
+      <div>
+        <div class="prose">
+          <p class="drop">
+            I was born in Beijing and spent my first six years there sketching rocket
+            launches on a small chalkboard — liftoff to orbit, in white chalk, repeatedly,
+            because my parents kept letting me. It was my first attempt at making
+            something complicated feel legible.
+          </p>
+          <p>
+            Twelve years and three cities later, I’m at NYU Stern studying Business,
+            Technology, and Entrepreneurship. I came in thinking I wanted to be a
+            scientist; the contest-math years in Toronto<button class="fnref" data-fn="1">1</button>
+            taught me I love thinking analytically more than I love being faster than other
+            people at it.
+          </p>
+          <p>
+            The most important thing I’ve made so far is <em>ChatPals</em> — a small
+            startup that connected over a hundred students in rural mountainous China
+            to high-school language tutors in the US and Canada. I started it after
+            thinking about my mother, who grew up in rural China, finished at the top
+            of her class, and was told she could not continue her education because
+            she was a girl. ChatPals didn’t fix that. But it taught me that the
+            things I care about most are <em>stories</em><button class="fnref" data-fn="2">2</button> —
+            whose get told, whose don’t, and how access to one good teacher
+            quietly changes the trajectory of a life.
+          </p>
+          <p>
+            Right now I’m trying to figure out what I can devote myself to fully. I
+            think it lives somewhere in the overlap of strategy, technology, and the
+            stories that make either one worth doing. <span class="han">酸甜苦辣</span> —
+            sour, sweet, bitter, spicy — that’s the whole point.
+          </p>
+        </div>
+
+        <div class="footnotes" id="footnotes">
+          <div class="footnote" data-fn="1">
+            <span class="n">[1]</span>
+            <span>The TOPS program at Marc Garneau Collegiate — a selective STEM stream in Toronto. Captain of the physics team, semifinalist at the Canadian Young Physicists’ Tournament. I left it grateful for the rigor and clear that I wanted to think about <em>why</em> things mattered, not only how fast I could solve them.</span>
+          </div>
+          <div class="footnote" data-fn="2">
+            <span class="n">[2]</span>
+            <span>Fables, indigenous stories, my parents’ — the unit of meaning that travels furthest. A consulting deck is just a story with footnotes.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><div class="rule"></div></div>
+
+<!-- ============================================================
+     SELECTED WORK
+============================================================ -->
+<section class="section" id="work">
+  <div class="wrap">
+    <div class="section-label">
+      <span><span class="num">§ 02</span> &nbsp;&nbsp; Selected Work</span>
+      <span>Four pieces</span>
+    </div>
+
+    <div class="works">
+
+      <!-- 01 — KIVA × DUOLINGO -->
+      <article class="work">
+        <div class="work-meta">
+          <div class="work-num">
+            <span class="index">01</span>
+            <span>Strategy · Consulting Case</span>
+          </div>
+          <h3 class="work-title">A Kiva &times; Duolingo<br/>partnership.</h3>
+          <p class="work-desc">
+            For 180 Degrees Consulting’s second-round case I proposed that Kiva — the
+            microlending nonprofit — partner with Duolingo to grow its lender base by
+            embedding real borrower stories inside language lessons. Words to worlds:
+            you encounter María through a Spanish module, and the door to lending is
+            right there. Twelve slides, four appendices, every figure sourced.
+          </p>
+          <div class="work-tags">
+            <span>Market Sizing</span>
+            <span>Partnership Strategy</span>
+            <span>Figma</span>
+            <span>2026</span>
+          </div>
+          <a class="cta" href="kiva-deck.pdf" target="_blank" rel="noopener">Read the deck (PDF, 6 MB)</a>
+        </div>
+        <div class="work-image">
+          <img src="images/project-kiva.jpg" alt="Cover slide for the Kiva × Duolingo partnership deck" />
+          <div class="caption">Fig. 01 — Agenda spread, Kiva × Duolingo deck</div>
+        </div>
+      </article>
+
+      <!-- 02 — CYBERRANGE OS -->
+      <article class="work flip">
+        <div class="work-meta">
+          <div class="work-num">
+            <span class="index">02</span>
+            <span>Code · Interactive</span>
+          </div>
+          <h3 class="work-title">CYBERRANGE OS — a phishing<br/>simulator that bites back.</h3>
+          <p class="work-desc">
+            A self-contained, browser-based desktop OS that drops you inside a
+            simulated workstation, hands you an inbox, and waits to see whether you
+            click the suspicious attachment. If you do, the ransomware payload starts
+            to take over the screen — staged, theatrical, and entirely safe. Built in
+            a single HTML file with no frameworks. Open it on any laptop.
+          </p>
+          <div class="work-tags">
+            <span>HTML / CSS / JS</span>
+            <span>~7000 lines</span>
+            <span>One file, no build</span>
+            <span>2026</span>
+          </div>
+          <a class="cta" href="cyberrange/" target="_blank" rel="noopener">Launch the simulator</a>
+        </div>
+        <div class="work-image">
+          <div class="preview-cyber" aria-hidden="true">
+            <div>
+              <div class="winbar"><i></i><i></i><i class="r"></i></div>
+              <div class="alert">SUSPICIOUS EXECUTABLE LAUNCHED — Account_Verification_Form.exe</div>
+              <div class="lines">
+                <div><span class="dim">$</span> mail open --id=m3</div>
+                <div><span class="dim">› from:</span> security-alert@microsft-account-verify.com</div>
+                <div><span class="dim">› subject:</span> URGENT: account will be deactivated…</div>
+                <div><span class="red">› flags: 7 phishing indicators detected</span></div>
+                <div><span class="dim">$</span> spawn child_process<span class="blink"></span></div>
+              </div>
+            </div>
+            <div class="stamp">⚠ Training Environment</div>
+          </div>
+          <div class="caption">Fig. 02 — Inbox screen on detonation</div>
+        </div>
+      </article>
+
+      <!-- 03 — CHATPALS -->
+      <article class="work">
+        <div class="work-meta">
+          <div class="work-num">
+            <span class="index">03</span>
+            <span>Founder · Education</span>
+          </div>
+          <h3 class="work-title">ChatPals — a hundred<br/>conversations, one bridge.</h3>
+          <p class="work-desc">
+            A high-school startup that paired students in rural, mountainous regions
+            of China with native-speaker tutors in the US and Canada. We ran weekly
+            sessions, visited partner schools, and generated $6,000+ in revenue
+            within six months. Recognized as an International Finalist at the 2024
+            Diamond Entrepreneurship Challenge. The work that made me want to keep
+            making things.
+          </p>
+          <div class="work-tags">
+            <span>Operations</span>
+            <span>Partnerships</span>
+            <span>Diamond Intl Finalist</span>
+            <span>2023 — 2025</span>
+          </div>
+          <a class="cta" href="#contact">Ask me about it</a>
+        </div>
+        <div class="work-image">
+          <div class="preview-chat" aria-hidden="true">
+            <div class="row">
+              <span>Toronto → Yunnan</span>
+              <span>2023 — 2025</span>
+            </div>
+            <div class="stat">
+              100<sup>+</sup>
+              <sub>students paired</sub>
+            </div>
+            <div class="row">
+              <span>$6K+ revenue · year 1</span>
+              <span>志 — resolve</span>
+            </div>
+          </div>
+          <div class="caption">Fig. 03 — Operating snapshot</div>
+        </div>
+      </article>
+
+      <!-- 04 — ARDUINO SYNTH -->
+      <article class="work flip">
+        <div class="work-meta">
+          <div class="work-num">
+            <span class="index">04</span>
+            <span>Hardware · Coursework</span>
+          </div>
+          <h3 class="work-title">A buzzer that listens<br/>to a joystick.</h3>
+          <p class="work-desc">
+            For BTE Lab 04 I built an Arduino instrument: an analog joystick mapped to
+            the pitch of a passive piezo, with the joystick’s click as a mute. The
+            interesting part was the bookkeeping — the analog inputs floated by ±20 at
+            rest, so I had to write a dead-zone and a hysteresis threshold to keep the
+            tone from glitching. Hardware never behaves the way you expect; that was
+            the lesson.
+          </p>
+          <div class="work-tags">
+            <span>Arduino Nano 33 IoT</span>
+            <span>C++</span>
+            <span>Analog I/O</span>
+            <span>Feb 2026</span>
+          </div>
+          <a class="cta" href="https://github.com/" target="_blank" rel="noopener">See the writeup</a>
+        </div>
+        <div class="work-image">
+          <img src="images/project-synth.jpg" alt="Breadboard with an Arduino Nano, joystick, and passive buzzer" />
+          <div class="caption">Fig. 04 — Tier 3 build, breadboard study</div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><div class="rule"></div></div>
+
+<!-- ============================================================
+     OFF DUTY
+============================================================ -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-label">
+      <span><span class="num">§ 03</span> &nbsp;&nbsp; Marginalia</span>
+      <span>Off duty</span>
+    </div>
+
+    <div class="offduty">
+      <img src="images/food.jpg" alt="Three plates of grilled steak with onion rings on a wooden table" />
+      <div class="text">
+        <h3>The other thing I do, mostly, is eat.</h3>
+        <p>
+          I think a cuisine is the most honest record a culture keeps of itself.
+          I cook a lot of Sichuan, eat a lot of everything, and have an uncomfortably
+          strong opinion on which pork shoulder cut is correct for a Cantonese char siu.
+        </p>
+        <p>
+          If you want to know me quickly, get me food. If you want to know me well, let
+          me cook for you.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><div class="rule"></div></div>
+
+<!-- ============================================================
+     CURRENTLY + TOOLS
+============================================================ -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-label">
+      <span><span class="num">§ 04</span> &nbsp;&nbsp; Standing Items</span>
+      <span>Currently</span>
+    </div>
+
+    <div class="now-grid">
+
+      <div>
+        <h3 class="now-h">Currently.</h3>
+        <ul class="now-list">
+          <li><time>2026 —</time><span><strong>NYU Management Consulting Group</strong> · Core Consulting Committee</span></li>
+          <li><time>2026 —</time><span><strong>Stern Business Analytics Club</strong> · <em>Insight Team analyst</em></span></li>
+          <li><time>2025 —</time><span><strong>Stern BTE Leadership</strong> · Marketing Freshman Liaison</span></li>
+          <li><time>2026 —</time><span><strong>Stern Accounting Society</strong> · Workshop Program</span></li>
+          <li><time>Always</time><span><em>Reading something with footnotes; cooking something with bones.</em></span></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="now-h">In the kit.</h3>
+        <ul class="tools-list">
+          <li>Python · pandas</li>
+          <li>JavaScript</li>
+          <li>HTML / CSS</li>
+          <li>Figma</li>
+          <li>Canva</li>
+          <li>Arduino · C++</li>
+          <li>Statistical analysis</li>
+          <li>English (native)</li>
+          <li>Mandarin (native)</li>
+          <li>Plate-spinning</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CONTACT
+============================================================ -->
+<section class="contact" id="contact">
+  <div class="wrap">
+    <p class="lead">
+      Reach me at <a href="mailto:luck.xing@stern.nyu.edu">luck.xing@<br/>stern.nyu.edu</a>.
+    </p>
+    <div class="links">
+      <a href="mailto:luck.xing@stern.nyu.edu">Email</a>
+      <a href="https://www.linkedin.com/in/REPLACE-WITH-YOUR-HANDLE" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/REPLACE-WITH-YOUR-HANDLE" target="_blank" rel="noopener">GitHub</a>
+      <a href="resume.pdf" target="_blank" rel="noopener">Résumé (PDF)</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     COLOPHON
+============================================================ -->
+<footer class="colophon">
+  <div class="wrap">
+    <div>© Luck Xing, <span id="yearNow">2026</span></div>
+    <div class="set">
+      Set in <em>Fraunces</em> &amp; <em>JetBrains Mono</em>. Built in a single HTML file. No trackers.
+    </div>
+    <div>End of issue.</div>
+  </div>
+</footer>
+
+<script>
+/* ----------------------------------------------------------------
+   Tiny site script — masthead clock, footnote toggle, reveal anim
+---------------------------------------------------------------- */
+(function () {
+  // 1. Date in masthead
+  const fmt = new Intl.DateTimeFormat('en-US', {
+    month: 'short', day: 'numeric', year: 'numeric'
+  });
+  const now = new Date();
+  document.getElementById('dateNow').textContent = fmt.format(now);
+  document.getElementById('yearNow').textContent = now.getFullYear();
+
+  // 2. Footnote interactions — clicking a ref highlights & scrolls its footnote
+  const refs = document.querySelectorAll('.fnref');
+  const notes = document.querySelectorAll('.footnote');
+  refs.forEach(ref => {
+    ref.addEventListener('click', e => {
+      const n = ref.dataset.fn;
+      refs.forEach(r => r.classList.remove('active'));
+      notes.forEach(nt => nt.classList.remove('lit'));
+      ref.classList.add('active');
+      const target = document.querySelector('.footnote[data-fn="' + n + '"]');
+      if (target) {
+        target.classList.add('lit');
+        target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    });
+  });
+  // Hover-light the matching footnote without scrolling
+  refs.forEach(ref => {
+    ref.addEventListener('mouseenter', () => {
+      const target = document.querySelector('.footnote[data-fn="' + ref.dataset.fn + '"]');
+      if (target) target.classList.add('lit');
+    });
+    ref.addEventListener('mouseleave', () => {
+      const target = document.querySelector('.footnote[data-fn="' + ref.dataset.fn + '"]');
+      if (target && !ref.classList.contains('active')) target.classList.remove('lit');
+    });
+  });
+
+  // 3. Staggered reveal on hero
+  const reveals = document.querySelectorAll('.reveal');
+  reveals.forEach((el, i) => {
+    setTimeout(() => el.classList.add('in'), 120 + i * 110);
+  });
+})();
+</script>
+
+</body>
+</html>
